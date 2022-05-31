@@ -3,14 +3,15 @@ require("dotenv").config();
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const WOKCommands = require('wokcommands')
+const path = require('path')
 const welcome = require('./welcome.js')
 
 client.on('ready', () =>
 {
     new WOKCommands(client, {
-        commandsDir: 'commands',
+        commandsDir: path.join(__dirname, 'commands'),
         showWarns: false,
-        mongoUri: process.env.MONGO_URI
+        mongoUri: process.env.mongoPath
     })
 
     console.log(`${client.user.tag} đang bay tới đây. Víuuuuu`)
@@ -23,7 +24,7 @@ client.on('guildCreate', guild => {
     channel.send("AI của Mì đang bay tới đây. Víuuuuu ✈️")
 })
 
-client.on('message', (message) =>
+client.on('messageCreate', (message) =>
 {
 
     console.log(`${message.content}`);
@@ -43,14 +44,6 @@ client.on('message', (message) =>
         message.react('😡');
         message.react('🤬');
         message.reply('🔫🔫🔫🔫🔫')
-    }
-
-    if (message.content.toLowerCase().includes("bằng") || message.content.includes("==") || message.content.toLowerCase().includes("bang")) {
-        message.react('🔪');
-        message.react('🪓');
-        message.react('🔫');
-        message.react('🪚');
-        message.reply('Tao bắn mày đó!!!')
     }
     if (message.content.includes("=))")) {
         message.reply('Cười giề')
