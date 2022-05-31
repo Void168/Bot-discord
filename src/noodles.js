@@ -1,7 +1,7 @@
 require("dotenv").config();
 
-const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const Discord = require('discord.js');
+const client = new Discord.client()
 const welcome = require('./welcome')
 
 client.on('ready', () =>
