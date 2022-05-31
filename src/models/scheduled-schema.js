@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 
 const scheduledSchema = new mongoose.Schema({
     date: {
@@ -10,6 +10,6 @@ const scheduledSchema = new mongoose.Schema({
     channelId: reqString
 })
 
-const name = 'scheduled-posts'
+const name = mongoose.model('scheduled-posts', scheduledSchema)
 
-module.exports = mongoose.model[name] || mongoose.model(name, scheduledSchema, name)
+export default name
