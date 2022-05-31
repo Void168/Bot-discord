@@ -63,13 +63,5 @@ client.on('message', (message) =>
         message.react('🤩');
         message.reply('Mì cute đóoooo 🐱🐱🐱')
     } 
-    if (message.content.toLowerCase().includes('boss')) {
-        message.react('🤩');
-        message.reply('Cô chủ Mì 🐱🐱🐱')
-    } 
-    if (message.content.toLowerCase().includes('nhân viên tệ') || (message.content.toLowerCase().includes('nhan vien te'))){
-        message.react('😔');
-        message.reply('Hưng xấu xa 😔')
-    } 
 })
 client.login(process.env.DISCORDJS_BOT_TOKEN);
