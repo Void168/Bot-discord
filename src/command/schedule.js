@@ -1,12 +1,46 @@
 const momentTimezone = require('moment-timezone')
-const { MessageCollector} = require('discord.js')
+const { MessageCollector } = require('discord.js')
+
+const scheduledSchema = require('../models/scheduled-schema')
 
 module.exports = {
     requirePermission: ['ADMINISTRATOR'],
     expectedArgs: '<Channel tag  <YYYY/MM/DD> <HH:MM> <"AM" or "PM"> <Timezone>',
     minArgs: 5,
     maxArgs: 5,
-    init: () => { },
+    init: (client) =>
+    { 
+        const checkForPosts = async () =>
+        {
+            const query = {
+                date: {
+                    $lte: Date.now()
+                }
+            }
+
+            const results = await scheduledSchema.find(query)
+
+            for (const post of results) {
+                const { guildId, channelId, content } = post
+
+                const guild = await client.guilds.fetch(guildId)
+                if (!guild) {
+                    continue
+                }
+
+                const channel = guild.channels.cache.get(channelId)
+                if (!channel) {
+                    continue
+                }
+
+                channel.send(content)
+            }
+
+            await scheduledSchema.deleteMany(query)
+
+            setTimeout(checkForPosts, 1000*10)
+        }
+    },
     callbacks: async ({ message, args }) =>
     {
         const {mentions, guild, channel} = message
@@ -49,8 +83,17 @@ module.exports = {
             const collectedMessage = collected.first()
 
             if (!collectedMessage) {
-                message.reply('Lời nhắn của bạn đã được cài đặt')
+                message.reply('Đã quá thời gian gửi gắm')
             }
+
+            message.reply('Lời nhắn của bạn đã được cài đặt')
+
+            await new scheduledSchema({
+                date: targetDate.valueOf(),
+                content: collectedMessage.content,
+                guildId: guild.id,
+                channelId: targetChannel.id
+            }).save()
         })
     } 
 }

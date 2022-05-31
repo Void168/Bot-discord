@@ -7,10 +7,11 @@ const welcome = require('./welcome.js')
 
 client.on('ready', () =>
 {
-    new WOKCommands((client, {
+    new WOKCommands(client, {
         commandsDir: 'commands',
-        showWarns: false
-    }).setMongoPath(process.env.MONGO_URI))
+        showWarns: false,
+        mongoUri: process.env.MONGO_URI
+    })
 
     console.log(`${client.user.tag} đang bay tới đây. Víuuuuu`)
 
