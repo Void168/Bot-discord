@@ -22,7 +22,7 @@ module.exports = {
         const [date, time, clockType, timeZone] = args
 
         if (clockType !== "AM" && clockType !== "PM") {
-            message.reply("Phải chọn AM hoặc PM, bạn đã chọn "${ clockType })
+            message.reply(`Phải chọn AM hoặc PM, bạn đã chọn  "${ clockType }"`)
             return
         }
 
