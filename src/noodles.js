@@ -1,7 +1,8 @@
 require("dotenv").config();
 
-const Discord = require('discord.js');
-const client = new Discord.client()
+const Discord = require('discord.js')
+const client = new Discord.Client()
+const config = require('./config.json')
 const welcome = require('./welcome')
 
 client.on('ready', () =>
@@ -72,4 +73,4 @@ client.on('message', (message) =>
         message.reply('Hưng xấu xa 😔')
     } 
 })
-client.login(process.env.DISCORDJS_BOT_TOKEN);
+client.login(config.token);
