@@ -6,7 +6,7 @@ module.exports = (client, aliases, callback) =>
         aliases = [aliases]
     }
 
-    client.on('message', (message) =>
+    client.on('messageCreate', (message) =>
     {
         const { content } = message
         
