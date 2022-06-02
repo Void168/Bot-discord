@@ -1,4 +1,4 @@
-const prefix = "!"
+const {prefix} = require('./config.json')
 
 module.exports = (client, aliases, callback) =>
 {
@@ -6,11 +6,11 @@ module.exports = (client, aliases, callback) =>
         aliases = [aliases]
     }
 
-    client.on('createMessage', (message) =>
+    client.on('message', (message) =>
     {
         const { content } = message
         
-        aliases.forEach(alias =>
+        aliases.forEach((alias) =>
         {
             const command = `${prefix}${alias}`
 

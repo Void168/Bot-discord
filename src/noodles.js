@@ -4,7 +4,9 @@ const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const WOKCommands = require('wokcommands')
 const path = require('path')
-const welcome = require('./welcome.js')
+const welcome = require('./welcome')
+const command = require('./command')
+const config = require('./config.json')
 
 client.on('ready', () =>
 {
@@ -17,6 +19,15 @@ client.on('ready', () =>
     console.log(`${client.user.tag} đang bay tới đây. Víuuuuu`)
 
     welcome(client)
+
+    command(client, 'help', (message) =>
+    {
+        message.channel.send(`
+            Nhìn xuống bàn phím đi, gõ mấy cái này nè:
+            *help - Show help menu
+        `)
+    })
+
 })
 
 client.on('guildCreate', guild => {
