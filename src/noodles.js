@@ -9,7 +9,7 @@ const command = require('./command')
 const config = require('./config.json')
 const memberCount = require('./member-count')
 const { REST } = require('@discordjs/rest')
-const { Routes } = require('@discord-api-types/v9')
+const { Routes } = require('discord-api-types/v9')
 const fs = require('fs')
 const { Player } = require('discord-player')
 
