@@ -1,5 +1,5 @@
 module.exports = (client) => {
-    const channelId = '981821801527128114'
+    const channelId = process.env.CHANNEL_ID
     
     const updateMembers = guild =>
     {
@@ -10,6 +10,6 @@ module.exports = (client) => {
     client.on('guildMemberAdd', (member) => updateMembers(member.guild))
     client.on('guildMemberRemove', (member) => updateMembers(member.guild))
 
-    const guild = client.guilds.cache.get('941555019264716841')
+    const guild = client.guilds.cache.get(process.env.CHANNEL_ID)
     updateMembers(guild)
 }
