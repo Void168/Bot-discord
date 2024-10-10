@@ -1,7 +1,7 @@
 module.exports = (client) =>
 {
-    const channelId = '941555019264716843'
-    const targetChannelId= '980991505151975445'
+    const channelId = process.env.CHANNEL_ID
+    const targetChannelId= process.env.TARGET_CHANNEL_ID
     client.on('guildMemberAdd', (member) =>
     {
         console.log(member)
