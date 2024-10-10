@@ -13,8 +13,8 @@ const { Routes } = require('discord-api-types/v9')
 const fs = require('fs')
 const { Player } = require('discord-player')
 
-const CLIENT_ID = "943142960772579338"
-const GUILD_ID="941555019264716841"
+const CLIENT_ID = process.env.CLIENT_ID
+const GUILD_ID= process.env.GUILD_ID
 
 
 client.on('guildCreate', guild => {
@@ -55,7 +55,7 @@ client.on('messageCreate', (message) =>
         message.reply('Meowwww~~~ 🐱🐱🐱')
     }  
     if (message.content.toLowerCase().includes('zalo')) {
-        message.reply('https://zalo.me/g/yludud360')
+        message.reply(process.env.ZALO)
     }
     if (message.content.toLowerCase().includes('ai cute nhat') || message.content.toLowerCase().includes('ai cute nhất')) {
         message.react('🤩');
@@ -126,15 +126,15 @@ else {
             .setColor('#4752C4')
             .setTitle('Welcome to Livestream của Egg Mì')
             .setURL('https://www.nimo.tv/user/684138458')
-            .setAuthor({ name: '[Egg] Mì', iconURL: 'https://img.nimo.tv/t/1599518054884/202203171647542428136_1599518054884_avatar.png/w240_l0/img.webp', url: 'https://www.nimo.tv/user/684138458' })
+            .setAuthor({ name: '[Egg] Mì', iconURL: 'https://img.nimo.tv/t/1599518054884/202203171647542428136_1599518054884_avatar.png/w240_l0/img.webp', url: process.env.URL_NIMO })
             .setDescription('Chú hề ở mọi vũ trụ')
             .setThumbnail('https://img.nimo.tv/t/1629511985499/202205211653168769119_1629511985499_avatar.png/w180_l0/img.webp')
             .addFields(
-                { name: 'Nimo ID:', value: '684138458' },
+                { name: 'Nimo ID:', value: process.env.NIMO_ID },
                 { name: '\u200B', value: '\u200B' },
-                { name: 'FaceBook', value: 'https://www.facebook.com/miiduyennn', inline: true },
-                { name: 'Instagram', value: 'https://www.instagram.com/migerme/', inline: true },
-                { name: 'Tiktok', value: 'https://www.tiktok.com/@migerme', inline: true },
+                { name: 'FaceBook', value: process.env.FACEBOOK, inline: true },
+                { name: 'Instagram', value: process.env.INSTAGRAM, inline: true },
+                { name: 'Tiktok', value: process.env.TIKTOK, inline: true },
             )
             .setImage('https://img.nimo.tv/t/1599518054884/202203171647542428136_1599518054884_avatar.png/w240_l0/img.webp')
             .setTimestamp()
